@@ -5,8 +5,7 @@ vga.c; Where the code of the header resides.
 
 void print(const char* text) {
     for (int i = 0; text[i]; i++) {
-        VGA[i * 2] = text[i];
-        VGA[i * 2 + 1] = 0x0F;
+        VGA[i] = (0x0F << 8) | text[i];
     }
 }
 
