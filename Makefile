@@ -46,7 +46,7 @@ $(ISO_IMAGE): $(KERNEL_ELF)
 
 # ----- Ejecutar -----
 run: $(ISO_IMAGE)
-	qemu-system-x86_64 -machine pc -bios bios.bin -cdrom $(ISO_IMAGE)
+	qemu-system-x86_64 -cdrom $(ISO_IMAGE)
 
 
 # ----- Limpiar -----
