@@ -12,3 +12,7 @@ Pygramer78: the head of the team and only programmer working on this for now.
 # What i used
 I used nasm, clang, lld, grub, xorriso, qemu, mtools and of course, build essentials.
 This OS was made on a WSL ubuntu and some arch linux PCs
+
+# Other
+Pygramer78 is also the creator of lunara.
+Lunara: http://95.131.202.52/
