@@ -9,9 +9,8 @@ stack_top:
 
 section .text
 _start:
-    mov rsp, stack_top
-    mov rbp, 0
-
+    cli
+    lea rsp, [stack_top]
     call kernel_main
 
 .hang:

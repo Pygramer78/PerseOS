@@ -4,7 +4,7 @@ CC          := clang
 LD          := ld.lld
 ASM         := nasm
 
-CFLAGS      := -ffreestanding -mno-red-zone -Wall -Wextra -Iinclude
+CFLAGS      := -ffreestanding -mno-red-zone -fno-stack-protector -Wall -Wextra -Iinclude
 LDFLAGS     := -T linker/linker.ld
 ASMFLAGS    := -f elf64
 
@@ -46,7 +46,7 @@ $(ISO_IMAGE): $(KERNEL_ELF)
 
 # ----- Ejecutar -----
 run: $(ISO_IMAGE)
-	qemu-system-x86_64 -cdrom $(ISO_IMAGE)
+	qemu-system-x86_64 -cdrom $(ISO_IMAGE) -no-reboot -d int
 
 
 # ----- Limpiar -----
