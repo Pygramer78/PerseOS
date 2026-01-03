@@ -1,3 +1,4 @@
+BITS 32
 global _start
 extern kernel_main
 
@@ -10,7 +11,7 @@ stack_top:
 section .text
 _start:
     cli
-    lea rsp, [stack_top]
+    mov esp, stack_top
     call kernel_main
 
 .hang:

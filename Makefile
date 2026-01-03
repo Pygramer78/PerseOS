@@ -1,12 +1,12 @@
 # ===== Configuración =====
-ARCH        := x86_64
+ARCH        := i386
 CC          := clang
 LD          := ld.lld
 ASM         := nasm
 
-CFLAGS      := -ffreestanding -mno-red-zone -fno-stack-protector -Wall -Wextra -Iinclude
-LDFLAGS     := -T linker/linker.ld
-ASMFLAGS    := -f elf64
+CFLAGS      := -m32 -ffreestanding -fno-stack-protector -fno-pie -fno-builtin -Wall -Wextra -Iinclude
+LDFLAGS     := -m elf_i386 -T linker/linker.ld
+ASMFLAGS    := -f elf32
 
 BUILD_DIR   := build
 ISO_DIR     := iso
@@ -46,7 +46,7 @@ $(ISO_IMAGE): $(KERNEL_ELF)
 
 # ----- Ejecutar -----
 run: $(ISO_IMAGE)
-	qemu-system-x86_64 -cdrom $(ISO_IMAGE) -no-reboot -d int
+	qemu-system-i386 -cdrom $(ISO_IMAGE) -no-reboot -d int
 
 
 # ----- Limpiar -----

@@ -8,7 +8,7 @@ void kernel_main(void) {
     __asm__ volatile ("cli");
 
     clear();
-    const char* msg = "64-bit ELF Kernel iniciated correctly";
+    const char* msg = "32-bit ELF Kernel iniciated correctly";
     print(msg);
 
     while (1) {

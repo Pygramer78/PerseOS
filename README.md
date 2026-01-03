@@ -1,4 +1,4 @@
-# PerseOS: A minimalist 64-bit OS
+# PerseOS: A minimalist 32-bit OS
 This operating system was originally made to understand how these work.
 The objective is to make it easier to use, while offering VGA libs.
 You don't need to worry about graphical libraries, but you do have to worry about many other things.
