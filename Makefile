@@ -15,7 +15,7 @@ ISO_IMAGE   := $(BUILD_DIR)/os.iso
 
 # ===== Fuentes =====
 C_SOURCES   := $(shell find kernel include -name "*.c")
-ASM_SOURCES := $(shell find boot -name "*.asm")
+ASM_SOURCES := $(shell find boot include -name "*.asm")
 
 OBJECTS := \
   $(C_SOURCES:%.c=$(BUILD_DIR)/%.o) \

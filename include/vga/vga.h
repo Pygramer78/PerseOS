@@ -1,15 +1,20 @@
 /*
-VGA module. The closest thing you will ever have of stdio.h
-Remember you can always chose to install stdio.h
+VGA module. The closest thing you will ever have of stdio.h (doesn't even compare to it)
+Remember you can always choose to install stdio.h by installing any compiler (clang, gcc)
 */
 #pragma once
 #include <stdint.h>
 #include <stddef.h>
-
+#include <stdbool.h>
+#include <ascii/ascii.h>
 #define VGA_WIDTH  80
 #define VGA_HEIGHT 25
-
+#define KBD_DATA_PORT 0x60
+#define KBD_STATUS_PORT 0x65
 static volatile uint16_t* const VGA = (uint16_t*)0xB8000;
+
+static bool shift = false;
+static bool capslock = false;
 
 typedef enum {
     VGA_BLACK = 0,
@@ -38,5 +43,21 @@ static inline uint16_t vga_entry(unsigned char c, uint8_t color) {
     return (uint16_t)c | (uint16_t)color << 8;
 }
 
+static inline uint8_t inb(uint16_t port) {
+    // Receives scancode
+    uint8_t ret;
+    asm volatile ("inb %1, %0": "=a"(ret) : "Nd"(port));
+    return ret;
+}
+
+static inline void delay_hlt(int loops) {
+    for (int i = 0; i < loops; i++) {
+        asm volatile("hlt"); // Imprecise, but easily adjustable (By eye)
+    }
+}
+
 void clear(void);
+void putchar(char c);
 void print(const char* text);
+char getchar();
+void input(char* buffer, int max_len);
