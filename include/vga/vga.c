@@ -67,11 +67,7 @@ void print(const char* str) {
         putchar(str[i]);
 }
 
-// Read keyboard scancode
-uint8_t kbd_read() {
-    while (!(inb(KBD_STATUS_PORT) & 1));
-    return inb(KBD_DATA_PORT);
-}
+
 
 // getchar with Shift/CapsLock
 char getchar(void) {
