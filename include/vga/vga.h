@@ -8,6 +8,7 @@ Remember you can always choose to install stdio.h by installing any compiler (cl
 #include <stdbool.h>
 #include <ascii/ascii.h>
 #include <io/io.h>
+#include <keyboard/keyboard.h>
 // Data
 #define VGA_WIDTH  80
 #define VGA_HEIGHT 25
@@ -55,5 +56,4 @@ static inline void delay_hlt(int loops) {
 void clear(void);
 void putchar(char c);
 void print(const char* text);
-char getchar();
 void input(char* buffer, int max_len);

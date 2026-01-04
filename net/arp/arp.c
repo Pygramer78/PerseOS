@@ -1,5 +1,4 @@
 #include "arp.h"
-#include "rtl8139.h"
 
 // --- ARP table entry ---
 typedef struct {

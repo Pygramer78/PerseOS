@@ -1,6 +1,4 @@
-#include <vga/vga.h>
-#include <idt/idt.h>
-#include <syscalls/syscalls.h>
+#include "kernel.h"
 #define BUFFER_LENGTH 128
 /*
 kernel.c: The core of the OS. With it, the bootloader would be useless

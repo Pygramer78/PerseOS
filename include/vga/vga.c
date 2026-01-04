@@ -69,22 +69,7 @@ void print(const char* str) {
 
 
 
-// getchar with Shift/CapsLock
-char getchar(void) {
-    uint8_t sc;
-    char c = 0;
 
-    while (!c) {
-        sc = kbd_read();
-
-        if (sc == 0x2A || sc == 0x36) { shift = true; continue; }
-        if (sc == 0xAA || sc == 0xB6) { shift = false; continue; }
-        if (sc == 0x3A) { capslock = !capslock; continue; }
-
-        c = scancode_to_ascii(sc, shift, capslock);
-    }
-    return c;
-}
 
 // input with echo & scroll
 void input(char* buffer, int max_len) {
@@ -92,7 +77,7 @@ void input(char* buffer, int max_len) {
     char c;
 
     while (i < max_len - 1) {
-        c = getchar();
+        c = keyboard_getchar();
         if (c == '\r') break;
         putchar(c);  // eco en pantalla
         buffer[i++] = c;

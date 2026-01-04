@@ -4,7 +4,7 @@ CC          := clang
 LD          := ld.lld
 ASM         := nasm
 
-CFLAGS      := -m32 -ffreestanding -fno-stack-protector -fno-pie -fno-builtin -Wall -Wextra -Iinclude
+CFLAGS      := -m32 -ffreestanding -fno-stack-protector -fno-pie -fno-builtin -nostdinc -Wall -Wextra -Iinclude -Idrivers -Inet
 LDFLAGS     := -m elf_i386 -T linker/linker.ld
 ASMFLAGS    := -f elf32
 
@@ -14,7 +14,7 @@ KERNEL_ELF  := $(BUILD_DIR)/kernel.elf
 ISO_IMAGE   := $(BUILD_DIR)/os.iso
 
 # ===== Fuentes =====
-C_SOURCES   := $(shell find kernel include -name "*.c")
+C_SOURCES   := $(shell find kernel include drivers net -name "*.c")
 ASM_SOURCES := $(shell find boot include -name "*.asm")
 
 OBJECTS := \
