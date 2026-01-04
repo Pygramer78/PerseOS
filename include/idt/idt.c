@@ -19,13 +19,13 @@ void idt_init(void) {
     idt_ptr.limit = sizeof(idt) - 1;
     idt_ptr.base = (uint32_t)&idt;
 
-    // Inicializa todas las entradas a 0
+    // Initializes all entrys to 0
     for(int i = 0; i < IDT_SIZE; i++)
         idt_set_gate(i, 0, 0, 0);
 
-    // Ejemplo: vector 0x80 → syscall
-    extern void syscall_handler();  // desde syscall.asm
+    // Example: vector 0x80 -> syscall
+    extern void syscall_handler();  // from syscallasm.asm
     idt_set_gate(0x80, (uint32_t)syscall_handler, 0x08, 0x8E);
 
-    idt_flush((uint32_t)&idt_ptr); // carga la IDT en el CPU
+    idt_flush((uint32_t)&idt_ptr); // Loads the IDT on the CPU
 }

@@ -2,6 +2,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 // Just a file that manages ascii related stuff
+/*
+I believe that this file does not require documentation for now
+*/
 // Normal table (no shift)
 static const char normal[128] = {
     0,   0, '1','2','3','4','5','6','7','8',  // 0x00-0x09

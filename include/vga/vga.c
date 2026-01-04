@@ -8,7 +8,7 @@ static size_t col = 0;
 static vga_color fgcolor = VGA_WHITE;
 static vga_color bgcolor = VGA_BLACK;
 
-// Desplaza la pantalla una fila hacia arriba
+// Scrolls the screen in case that it's full
 static void scroll(void) {
     uint8_t color = vga_entry_color(fgcolor, bgcolor);
 
@@ -18,7 +18,7 @@ static void scroll(void) {
         }
     }
 
-    // Limpiar la última fila
+    // Clean the last line
     for (size_t x = 0; x < VGA_WIDTH; x++) {
         VGA[(VGA_HEIGHT - 1) * VGA_WIDTH + x] = vga_entry(' ', color);
     }
@@ -26,7 +26,7 @@ static void scroll(void) {
     if (row > 0) row--;
 }
 
-// Limpiar pantalla
+// Clears the screen
 void clear(void) {
     uint8_t color = vga_entry_color(fgcolor, bgcolor);
     for (size_t y = 0; y < VGA_HEIGHT; y++)
@@ -36,7 +36,7 @@ void clear(void) {
     col = 0;
 }
 
-// Pinta un carácter con scroll
+// Prints a character using the scroll function just in case
 void putchar(char c) {
     uint8_t color = vga_entry_color(fgcolor, bgcolor);
 
@@ -54,26 +54,26 @@ void putchar(char c) {
         }
     }
 
-    if (row >= VGA_HEIGHT) { // scroll automático
+    if (row >= VGA_HEIGHT) { // auto scroll
         scroll();
         row = VGA_HEIGHT - 1;
     }
 }
 
 
-// Pinta un string con scroll
+// Prints a string with scroll (Scroll is in the putchar function)
 void print(const char* str) {
     for (size_t i = 0; str[i]; i++)
         putchar(str[i]);
 }
 
-// Leer scancode del teclado
+// Read keyboard scancode
 uint8_t kbd_read() {
     while (!(inb(KBD_STATUS_PORT) & 1));
     return inb(KBD_DATA_PORT);
 }
 
-// getchar con Shift/CapsLock
+// getchar with Shift/CapsLock
 char getchar(void) {
     uint8_t sc;
     char c = 0;
@@ -90,7 +90,7 @@ char getchar(void) {
     return c;
 }
 
-// input con eco y scroll
+// input with echo & scroll
 void input(char* buffer, int max_len) {
     int i = 0;
     char c;

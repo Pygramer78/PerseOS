@@ -7,15 +7,16 @@ Remember you can always choose to install stdio.h by installing any compiler (cl
 #include <stddef.h>
 #include <stdbool.h>
 #include <ascii/ascii.h>
+
+// Data
 #define VGA_WIDTH  80
 #define VGA_HEIGHT 25
 #define KBD_DATA_PORT 0x60
 #define KBD_STATUS_PORT 0x65
 static volatile uint16_t* const VGA = (uint16_t*)0xB8000;
-
 static bool shift = false;
 static bool capslock = false;
-
+// A list of all the vga colors
 typedef enum {
     VGA_BLACK = 0,
     VGA_BLUE = 1,
@@ -35,6 +36,7 @@ typedef enum {
     VGA_WHITE = 15
 } vga_color;
 
+// Inline functions
 static inline uint8_t vga_entry_color(vga_color fg, vga_color bg) {
     return fg | bg << 4;
 }
@@ -56,6 +58,7 @@ static inline void delay_hlt(int loops) {
     }
 }
 
+// All the public functions
 void clear(void);
 void putchar(char c);
 void print(const char* text);
