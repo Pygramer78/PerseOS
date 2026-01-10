@@ -1,6 +1,5 @@
 #pragma once
 #include <stdint.h>
-
 /*
 idt.h: Interruption descriptor table.
 With this, the CPU knows what function to execute.

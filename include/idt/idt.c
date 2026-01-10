@@ -27,5 +27,9 @@ void idt_init(void) {
     extern void syscall_handler();  // from syscallasm.asm
     idt_set_gate(0x80, (uint32_t)syscall_handler, 0x08, 0x8E);
 
+    // Register IRQ0 (keyboard)
+    extern void keyboard_irq_handler();
+    idt_set_gate(0x21, (uint32_t)keyboard_irq_handler, 0x08, 0x08E  )
+
     idt_flush((uint32_t)&idt_ptr); // Loads the IDT on the CPU
 }
